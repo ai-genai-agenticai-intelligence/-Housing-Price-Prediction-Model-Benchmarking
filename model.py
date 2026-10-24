@@ -19,7 +19,7 @@ BASE_DIR = Path(__file__).resolve().parent
 data = pd.read_csv(BASE_DIR / 'USA_Housing.csv')
 
 # Preprocessing
-X = data.drop(['Price', 'Address'], axis=1) 
+X = data.drop(['Price', 'Address'], axis=1)
 y = data['Price']
 
 # Split data
@@ -51,18 +51,18 @@ results = []
 for name, model in models.items():
     model.fit(X_train, y_train)
     y_pred = model.predict(X_test)
-    
+
     mae = mean_absolute_error(y_test, y_pred)
     mse = mean_squared_error(y_test, y_pred)
     r2 = r2_score(y_test, y_pred)
-    
+
     results.append({
         'Model': name,
         'MAE': mae,
         'MSE': mse,
         'R2': r2
     })
-    
+
     with (BASE_DIR / f'{name}.pkl').open('wb') as f:
         pickle.dump(model, f)
 

@@ -8,8 +8,8 @@ BASE_DIR = Path(__file__).resolve().parent
 
 # Load models
 model_names = [
-    'LinearRegression', 'RobustRegression', 'RidgeRegression', 'LassoRegression', 'ElasticNet', 
-    'PolynomialRegression', 'SGDRegressor', 'ANN', 'RandomForest', 'SVM', 'LGBM', 
+    'LinearRegression', 'RobustRegression', 'RidgeRegression', 'LassoRegression', 'ElasticNet',
+    'PolynomialRegression', 'SGDRegressor', 'ANN', 'RandomForest', 'SVM', 'LGBM',
     'XGBoost', 'KNN'
 ]
 models = {}
@@ -35,7 +35,7 @@ def predict():
         'Area Population': float(request.form['Area Population'])
     }
     input_df = pd.DataFrame([input_data])
-    
+
     if model_name in models:
         model = models[model_name]
         prediction = model.predict(input_df)[0]
@@ -49,5 +49,5 @@ def results():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    
-    
+
+
