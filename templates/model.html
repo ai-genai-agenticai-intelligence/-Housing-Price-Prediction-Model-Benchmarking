@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Model performance | HomeValue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <a class="brand" href="/" aria-label="HomeValue home"><span class="brand-mark" aria-hidden="true">H</span><span>Home<span class="brand-accent">Value</span></span></a>
+            <nav class="topnav" aria-label="Main navigation"><a class="nav-link" href="/">Price estimator</a><a class="nav-link active" href="/results">Model performance</a></nav>
+            <span class="topbar-note"><span class="status-dot"></span> AI-powered estimate</span>
+        </header>
+        <main class="performance-main">
+            <section class="performance-heading">
+                <p class="eyebrow"><span class="eyebrow-line"></span> UNDER THE HOOD</p>
+                <h1>Meet the models<br>behind your <em>estimate.</em></h1>
+                <p>Explore how each machine-learning model performed. Lower error scores and a higher R² indicate a better fit.</p>
+                <a class="button button-primary" href="/">Try the estimator <span aria-hidden="true">→</span></a>
+            </section>
+            <section class="metrics-card" aria-labelledby="metrics-title">
+                <div class="metrics-heading">
+                    <div><p class="eyebrow">MODEL BENCHMARKS</p><h2 id="metrics-title">Evaluation results</h2></div>
+                    <span class="metrics-count">13 MODELS</span>
+                </div>
+                <p class="metrics-description">Scores from the held-out test dataset. MAE and MSE measure prediction error; R² measures how well the model explains price variation.</p>
+                <div class="table-scroll">
+                    {% for table in tables %}
+                        {{ table|safe }}
+                    {% endfor %}
+                </div>
+                <div class="metrics-legend"><span><b>MAE</b> Mean Absolute Error</span><span><b>MSE</b> Mean Squared Error</span><span><b>R²</b> Coefficient of determination</span></div>
+            </section>
+        </main>
+        <footer class="site-footer"><span>HomeValue <span class="footer-dot">·</span> Housing price estimator</span><span>Model scores are based on the project's test dataset.</span></footer>
+    </div>
+</body>
+</html>

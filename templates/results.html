@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your estimate | HomeValue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <a class="brand" href="/" aria-label="HomeValue home"><span class="brand-mark" aria-hidden="true">H</span><span>Home<span class="brand-accent">Value</span></span></a>
+            <nav class="topnav" aria-label="Main navigation"><a class="nav-link" href="/">Price estimator</a><a class="nav-link" href="/results">Model performance</a></nav>
+            <span class="topbar-note"><span class="status-dot"></span> AI-powered estimate</span>
+        </header>
+        <main class="result-main">
+            <a class="back-link" href="/">← Back to estimator</a>
+            <section class="result-card">
+                <div class="result-badge"><span aria-hidden="true">✳</span> YOUR ESTIMATE IS READY</div>
+                <div class="result-house-icon" aria-hidden="true">⌂</div>
+                <p class="result-label">Estimated home value</p>
+                <h1 class="result-price">${{ "{:,.2f}".format(prediction|float) }}</h1>
+                <p class="result-caption">An estimate generated from the property details you provided.</p>
+                <div class="result-divider"></div>
+                <div class="result-model"><span class="model-icon" aria-hidden="true">◎</span><span><small>POWERED BY</small><strong>{{ model_name }}</strong></span></div>
+                <div class="result-actions">
+                    <a class="button button-primary" href="/">Estimate another property <span aria-hidden="true">→</span></a>
+                    <a class="button button-secondary" href="/results">Compare model performance</a>
+                </div>
+                <p class="disclaimer">This estimate is for informational purposes only and is not a formal appraisal.</p>
+            </section>
+        </main>
+        <footer class="site-footer"><span>HomeValue <span class="footer-dot">·</span> Housing price estimator</span><span>Estimates are for informational purposes only.</span></footer>
+    </div>
+</body>
+</html>

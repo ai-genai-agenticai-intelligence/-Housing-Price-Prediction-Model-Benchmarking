@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f2">
+    <title>HomeValue | Housing Price Estimator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="page-shell">
+        <header class="topbar">
+            <a class="brand" href="/" aria-label="HomeValue home">
+                <span class="brand-mark" aria-hidden="true">H</span>
+                <span>Home<span class="brand-accent">Value</span></span>
+            </a>
+            <nav class="topnav" aria-label="Main navigation">
+                <a class="nav-link active" href="/">Price estimator</a>
+                <a class="nav-link" href="/results">Model performance</a>
+            </nav>
+            <span class="topbar-note"><span class="status-dot"></span> AI-powered estimate</span>
+        </header>
+
+        <main>
+            <section class="hero">
+                <div class="hero-copy">
+                    <p class="eyebrow"><span class="eyebrow-line"></span> YOUR NEXT MOVE STARTS HERE</p>
+                    <h1>Find out what<br>your home is <em>worth.</em></h1>
+                    <p class="hero-description">A smarter starting point for your property journey. Add a few details and let our machine-learning models estimate your home's value.</p>
+                    <div class="hero-footnote"><span class="sparkle" aria-hidden="true">✳</span> Compare 13 regression models in one place</div>
+                </div>
+                <div class="hero-art" aria-hidden="true">
+                    <div class="art-orbit orbit-one"></div>
+                    <div class="art-orbit orbit-two"></div>
+                    <div class="art-sun"></div>
+                    <div class="art-house">
+                        <div class="house-roof"></div>
+                        <div class="house-body">
+                            <span class="house-window window-one"></span>
+                            <span class="house-window window-two"></span>
+                            <span class="house-door"></span>
+                        </div>
+                    </div>
+                    <div class="art-ground"></div>
+                    <div class="art-tag tag-price"><span class="tag-icon">$</span><span><small>PROPERTY VALUE</small><strong>Looking up</strong></span></div>
+                    <div class="art-tag tag-growth"><span class="growth-bars"><i></i><i></i><i></i><i></i></span><span><small>MARKET INSIGHT</small><strong>Made for you</strong></span></div>
+                </div>
+            </section>
+
+            <section class="estimator-section" aria-labelledby="estimator-title">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">PERSONALIZED ESTIMATE</p>
+                        <h2 id="estimator-title">Tell us about the property</h2>
+                    </div>
+                    <span class="step-indicator"><span>01</span> / 01</span>
+                </div>
+
+                <form action="/predict" method="POST" class="estimate-card">
+                    <div class="form-intro">
+                        <span class="form-icon" aria-hidden="true">⌂</span>
+                        <div>
+                            <h3>Property details</h3>
+                            <p>Enter the information below to get your estimate.</p>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="Avg. Area Income">Average area income</label>
+                            <div class="input-wrap"><span class="input-prefix">$</span><input type="number" step="any" min="0" id="Avg. Area Income" name="Avg. Area Income" placeholder="e.g. 79,500" required></div>
+                            <small>Typical household income in the area</small>
+                        </div>
+                        <div class="field">
+                            <label for="Avg. Area House Age">Average house age</label>
+                            <div class="input-wrap"><input type="number" step="any" min="0" id="Avg. Area House Age" name="Avg. Area House Age" placeholder="e.g. 5.6" required><span class="input-suffix">years</span></div>
+                            <small>Average age of nearby homes</small>
+                        </div>
+                        <div class="field">
+                            <label for="Avg. Area Number of Rooms">Average number of rooms</label>
+                            <div class="input-wrap"><input type="number" step="any" min="0" id="Avg. Area Number of Rooms" name="Avg. Area Number of Rooms" placeholder="e.g. 7" required></div>
+                            <small>Average rooms per home in the area</small>
+                        </div>
+                        <div class="field">
+                            <label for="Avg. Area Number of Bedrooms">Average number of bedrooms</label>
+                            <div class="input-wrap"><input type="number" step="any" min="0" id="Avg. Area Number of Bedrooms" name="Avg. Area Number of Bedrooms" placeholder="e.g. 4" required></div>
+                            <small>Average bedrooms per home in the area</small>
+                        </div>
+                        <div class="field">
+                            <label for="Area Population">Area population</label>
+                            <div class="input-wrap"><input type="number" step="any" min="0" id="Area Population" name="Area Population" placeholder="e.g. 23,000" required><span class="input-suffix">people</span></div>
+                            <small>Number of people living in the area</small>
+                        </div>
+                        <div class="field">
+                            <label for="model">Choose a prediction model</label>
+                            <div class="input-wrap select-wrap">
+                                <select id="model" name="model" required>
+                    {% for model_name in model_names %}
+                        <option value="{{ model_name }}">{{ model_name }}</option>
+                    {% endfor %}
+                                </select>
+                                <span class="select-chevron" aria-hidden="true">⌄</span>
+                            </div>
+                            <small>Choose one of 13 trained models</small>
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <p><span class="lock-icon" aria-hidden="true">◈</span> Your property details are only used to generate this estimate.</p>
+                        <button type="submit" class="button button-primary">Get my estimate <span aria-hidden="true">→</span></button>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer class="site-footer"><span>HomeValue <span class="footer-dot">·</span> Housing price estimator</span><span>Estimates are for informational purposes only.</span></footer>
+    </div>
+</body>
+</html>
