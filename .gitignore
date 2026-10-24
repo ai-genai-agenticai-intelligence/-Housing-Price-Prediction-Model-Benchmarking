@@ -3,9 +3,16 @@ __pycache__/
 .venv/
 venv/
 env/
+ENV/
 .env
 .env.*
 !.env.example
 *.log
 .pytest_cache/
 .coverage
+.coverage.*
+dist/
+build/
+*.egg-info/
+.idea/
+.vscode/
